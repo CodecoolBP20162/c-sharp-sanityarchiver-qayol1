@@ -88,10 +88,10 @@ namespace SanityArchiver
                 item.SubItems.Add(file.FullName);
                 item.SubItems.Add(file.Extension);
                 item.SubItems.Add(ConvertBytes(file.Length));
-                FileListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                FileListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
             PathBox.Text = currentDirectory.FullName;
+            FileListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            FileListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             FileListView.Columns[1].Width = 0;
         }
        
