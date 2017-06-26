@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SanityArchiver
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
         static DirectoryInfo currentDirectory;
@@ -19,7 +19,7 @@ namespace SanityArchiver
         static List<DirectoryInfo> DirList;
         static String path;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -30,8 +30,7 @@ namespace SanityArchiver
             DirList = new List<DirectoryInfo>();
             path = "C:/";
             FillData();
-            ShowData();
-           
+            ShowData();    
         }
 
         private void FillData()
@@ -53,8 +52,7 @@ namespace SanityArchiver
             } catch (UnauthorizedAccessException)
             {
 
-            }
-            
+            }       
         }
 
         private void AddFiles()
@@ -69,8 +67,7 @@ namespace SanityArchiver
             } catch (UnauthorizedAccessException)
             {
                 
-            }
-            
+            }      
         }
 
         private void ShowData()
@@ -116,16 +113,7 @@ namespace SanityArchiver
             return "";
         }
 
-        private void FileListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (FileListView.FocusedItem.SubItems[2].Text.Equals("File folder"))
-            {
-                path = FileListView.FocusedItem.SubItems[1].Text;
-                GoToNewDir();
-
-            }
-        }
-
+        
         private void GoToNewDir()
         {
             PathBox.Text = path;
@@ -143,6 +131,24 @@ namespace SanityArchiver
             } catch (NullReferenceException)
             {
 
+            }
+        }
+
+        
+
+        private void FileListView_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (FileListView.FocusedItem.SubItems[2].Text.Equals("File folder"))
+            {
+                path = FileListView.FocusedItem.SubItems[1].Text;
+                GoToNewDir();
+            }
+            else
+            {
+                var form = new FileMenu();
+                form.file = FileListView.FocusedItem.SubItems[1].Text;
+                form.Text = FileListView.FocusedItem.SubItems[0].Text;
+                form.ShowDialog(this);
             }
         }
     }
