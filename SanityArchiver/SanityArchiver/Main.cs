@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,7 +67,7 @@ namespace SanityArchiver
                 }
             } catch (UnauthorizedAccessException)
             {
-                
+                MessageBox.Show("You have no acces to this directory.", "Acces denied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }      
         }
 
@@ -155,6 +156,42 @@ namespace SanityArchiver
                 form.FullFileName = FileListView.FocusedItem.SubItems[1].Text;
                 form.Text = FileListView.FocusedItem.SubItems[0].Text;
                 form.ShowDialog(this);
+            }
+        }
+
+        private void ArchiveFile(DirectoryInfo archiveDir, FileInfo fileToArchive)
+        {
+            FileStream input = fileToArchive.OpenRead();
+            FileStream output = File.Create(archiveDir.FullName + @"\" + fileToArchive.Name + ".gz");
+            GZipStream Compressor = new GZipStream(output, CompressionMode.Compress);
+            int b = input.ReadByte();
+            while (b != -1)
+            {
+                Compressor.WriteByte((byte)b);
+
+                b = input.ReadByte();
+            }
+            Compressor.Close();
+            input.Close();
+            output.Close();
+        }
+
+        private void FileListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (FileListView.FocusedItem.Bounds.Contains(e.Location) == true && !FileListView.FocusedItem.SubItems[2].Text.Equals("File folder") && FileListView.FocusedItem.SubItems[2].Text.Equals(".txt"))
+                {
+                    TxtFileContextMenuStrip.Show(Cursor.Position);
+                }
+                if (FileListView.FocusedItem.Bounds.Contains(e.Location) == true && FileListView.FocusedItem.SubItems[2].Text.Equals("File folder"))
+                {
+                    DirContextMenuStrip.Show(Cursor.Position);
+                }
+                if (FileListView.FocusedItem.Bounds.Contains(e.Location) == true && !FileListView.FocusedItem.SubItems[2].Text.Equals("File folder") && !FileListView.FocusedItem.SubItems[2].Text.Equals(".txt"))
+                {
+                    FileContextMenuStrip.Show(Cursor.Position);
+                }
             }
         }
     }

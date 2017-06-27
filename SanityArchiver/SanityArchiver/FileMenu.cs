@@ -95,8 +95,9 @@ namespace SanityArchiver
                 }
             } catch
             {
-
+                MessageBox.Show("Can't change the file's attributes.", "Acces denied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            this.Close();
             
         }
 
