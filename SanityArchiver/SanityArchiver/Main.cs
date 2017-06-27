@@ -87,9 +87,15 @@ namespace SanityArchiver
                 item.SubItems.Add(ConvertBytes(file.Length));
             }
             PathBox.Text = currentDirectory.FullName;
-            FileListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            FileListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             FileListView.Columns[1].Width = 0;
+            for (int i=0; i<FileListView.Columns.Count; i++)
+            {
+                if (!FileListView.Columns[i].Text.Equals("Path"))
+                {
+                    FileListView.Columns[i].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    FileListView.Columns[i].AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+                }
+            }
         }
        
         private string ConvertBytes(double FileLength)
