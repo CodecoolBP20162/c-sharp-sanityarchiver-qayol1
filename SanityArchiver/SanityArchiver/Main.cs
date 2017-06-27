@@ -19,6 +19,7 @@ namespace SanityArchiver
         static List<FileInfo> FileList;
         static List<DirectoryInfo> DirList;
         static String path;
+        static ListViewItem SelectedItem;
 
         public MainForm()
         {
@@ -141,9 +142,7 @@ namespace SanityArchiver
             }
         }
 
-        
-
-        private void FileListView_MouseDoubleClick(object sender, MouseEventArgs e)
+       private void FileListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (FileListView.FocusedItem.SubItems[2].Text.Equals("File folder"))
             {
@@ -159,10 +158,10 @@ namespace SanityArchiver
             }
         }
 
-        private void ArchiveFile(DirectoryInfo archiveDir, FileInfo fileToArchive)
+        private void ArchiveFile(FileInfo fileToArchive)
         {
             FileStream input = fileToArchive.OpenRead();
-            FileStream output = File.Create(archiveDir.FullName + @"\" + fileToArchive.Name + ".gz");
+            FileStream output = File.Create(fileToArchive.Directory + @"\" + Path.GetFileNameWithoutExtension(fileToArchive.Name) + ".gz");
             GZipStream Compressor = new GZipStream(output, CompressionMode.Compress);
             int b = input.ReadByte();
             while (b != -1)
@@ -180,19 +179,67 @@ namespace SanityArchiver
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (FileListView.FocusedItem.Bounds.Contains(e.Location) == true && !FileListView.FocusedItem.SubItems[2].Text.Equals("File folder") && FileListView.FocusedItem.SubItems[2].Text.Equals(".txt"))
+                SelectedItem = FileListView.FocusedItem;
+                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && SelectedItem.SubItems[2].Text.Equals(".txt"))
                 {
                     TxtFileContextMenuStrip.Show(Cursor.Position);
+                    
                 }
-                if (FileListView.FocusedItem.Bounds.Contains(e.Location) == true && FileListView.FocusedItem.SubItems[2].Text.Equals("File folder"))
+                if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("File folder"))
                 {
                     DirContextMenuStrip.Show(Cursor.Position);
                 }
-                if (FileListView.FocusedItem.Bounds.Contains(e.Location) == true && !FileListView.FocusedItem.SubItems[2].Text.Equals("File folder") && !FileListView.FocusedItem.SubItems[2].Text.Equals(".txt"))
+                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && !SelectedItem.SubItems[2].Text.Equals(".txt"))
                 {
                     FileContextMenuStrip.Show(Cursor.Position);
                 }
             }
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void archiveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
+            ArchiveFile(file);
+            FillData();
+            ShowData();
+        }
+
+        private void readToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cryptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void copyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void zipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
+            ArchiveFile(file);
+            FillData();
+            ShowData();
+        }
+
+        private void cryptToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -123,31 +123,35 @@
             this.readToolStripMenuItem,
             this.cryptToolStripMenuItem});
             this.TxtFileContextMenuStrip.Name = "TxtFileContextMenuStrip";
-            this.TxtFileContextMenuStrip.Size = new System.Drawing.Size(104, 92);
+            this.TxtFileContextMenuStrip.Size = new System.Drawing.Size(153, 114);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // archiveToolStripMenuItem
             // 
             this.archiveToolStripMenuItem.Name = "archiveToolStripMenuItem";
-            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.archiveToolStripMenuItem.Text = "Zip";
+            this.archiveToolStripMenuItem.Click += new System.EventHandler(this.archiveToolStripMenuItem_Click);
             // 
             // readToolStripMenuItem
             // 
             this.readToolStripMenuItem.Name = "readToolStripMenuItem";
-            this.readToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.readToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.readToolStripMenuItem.Text = "Read";
+            this.readToolStripMenuItem.Click += new System.EventHandler(this.readToolStripMenuItem_Click);
             // 
             // cryptToolStripMenuItem
             // 
             this.cryptToolStripMenuItem.Name = "cryptToolStripMenuItem";
-            this.cryptToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.cryptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cryptToolStripMenuItem.Text = "Crypt";
+            this.cryptToolStripMenuItem.Click += new System.EventHandler(this.cryptToolStripMenuItem_Click);
             // 
             // FileContextMenuStrip
             // 
@@ -156,25 +160,28 @@
             this.zipToolStripMenuItem,
             this.cryptToolStripMenuItem1});
             this.FileContextMenuStrip.Name = "FileContextMenuStrip";
-            this.FileContextMenuStrip.Size = new System.Drawing.Size(153, 92);
+            this.FileContextMenuStrip.Size = new System.Drawing.Size(104, 70);
             // 
             // copyToolStripMenuItem1
             // 
             this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
             this.copyToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.copyToolStripMenuItem1.Text = "Copy";
+            this.copyToolStripMenuItem1.Click += new System.EventHandler(this.copyToolStripMenuItem1_Click);
             // 
             // zipToolStripMenuItem
             // 
             this.zipToolStripMenuItem.Name = "zipToolStripMenuItem";
             this.zipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zipToolStripMenuItem.Text = "Zip";
+            this.zipToolStripMenuItem.Click += new System.EventHandler(this.zipToolStripMenuItem_Click);
             // 
             // cryptToolStripMenuItem1
             // 
             this.cryptToolStripMenuItem1.Name = "cryptToolStripMenuItem1";
             this.cryptToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.cryptToolStripMenuItem1.Text = "Crypt";
+            this.cryptToolStripMenuItem1.Click += new System.EventHandler(this.cryptToolStripMenuItem1_Click);
             // 
             // DirContextMenuStrip
             // 
@@ -186,8 +193,9 @@
             // sizeToolStripMenuItem
             // 
             this.sizeToolStripMenuItem.Name = "sizeToolStripMenuItem";
-            this.sizeToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.sizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sizeToolStripMenuItem.Text = "Size";
+            this.sizeToolStripMenuItem.Click += new System.EventHandler(this.sizeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
