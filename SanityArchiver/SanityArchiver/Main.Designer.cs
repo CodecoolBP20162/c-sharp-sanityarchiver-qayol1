@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.FileListView = new System.Windows.Forms.ListView();
             this.Column0 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,6 +49,7 @@
             this.cryptToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.DirContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.sizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.TxtFileContextMenuStrip.SuspendLayout();
             this.FileContextMenuStrip.SuspendLayout();
             this.DirContextMenuStrip.SuspendLayout();
@@ -123,7 +125,7 @@
             this.readToolStripMenuItem,
             this.cryptToolStripMenuItem});
             this.TxtFileContextMenuStrip.Name = "TxtFileContextMenuStrip";
-            this.TxtFileContextMenuStrip.Size = new System.Drawing.Size(153, 114);
+            this.TxtFileContextMenuStrip.Size = new System.Drawing.Size(104, 92);
             // 
             // copyToolStripMenuItem
             // 
@@ -197,6 +199,14 @@
             this.sizeToolStripMenuItem.Text = "Size";
             this.sizeToolStripMenuItem.Click += new System.EventHandler(this.sizeToolStripMenuItem_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "file.png");
+            this.imageList1.Images.SetKeyName(1, "folder.jpg");
+            this.imageList1.Images.SetKeyName(2, "txtfile.png");
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,6 +247,7 @@
         private System.Windows.Forms.ToolStripMenuItem cryptToolStripMenuItem1;
         private System.Windows.Forms.ContextMenuStrip DirContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem sizeToolStripMenuItem;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 

@@ -31,6 +31,7 @@ namespace SanityArchiver
             FileList = new List<FileInfo>();
             DirList = new List<DirectoryInfo>();
             path = "C:/";
+            FileListView.SmallImageList = this.imageList1;
             FillData();
             ShowData();    
         }
@@ -78,6 +79,7 @@ namespace SanityArchiver
             foreach (DirectoryInfo dir in DirList)
             {
                 ListViewItem item = FileListView.Items.Add(dir.Name);
+                item.ImageIndex = 1;
                 item.SubItems.Add(dir.FullName);
                 item.SubItems.Add("File folder");
             }
@@ -86,6 +88,13 @@ namespace SanityArchiver
                 ListViewItem item = FileListView.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
                 item.SubItems.Add(file.FullName);
                 item.SubItems.Add(file.Extension);
+                if (file.Extension.Equals(".txt"))
+                {
+                    item.ImageIndex = 2;
+                } else
+                {
+                    item.ImageIndex = 0;
+                }
                 item.SubItems.Add(ConvertBytes(file.Length));
             }
             PathBox.Text = currentDirectory.FullName;
@@ -160,19 +169,26 @@ namespace SanityArchiver
 
         private void ArchiveFile(FileInfo fileToArchive)
         {
-            FileStream input = fileToArchive.OpenRead();
-            FileStream output = File.Create(fileToArchive.Directory + @"\" + Path.GetFileNameWithoutExtension(fileToArchive.Name) + ".gz");
-            GZipStream Compressor = new GZipStream(output, CompressionMode.Compress);
-            int b = input.ReadByte();
-            while (b != -1)
+            try
             {
-                Compressor.WriteByte((byte)b);
+                FileStream input = fileToArchive.OpenRead();
+                FileStream output = File.Create(fileToArchive.Directory + @"\" + Path.GetFileNameWithoutExtension(fileToArchive.Name) + ".gz");
+                GZipStream Compressor = new GZipStream(output, CompressionMode.Compress);
+                int b = input.ReadByte();
+                while (b != -1)
+                {
+                    Compressor.WriteByte((byte)b);
 
-                b = input.ReadByte();
+                    b = input.ReadByte();
+                }
+                Compressor.Close();
+                input.Close();
+                output.Close();
+            } catch
+            {
+                MessageBox.Show("You have no acces to this file.", "Acces denied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            Compressor.Close();
-            input.Close();
-            output.Close();
+            
         }
 
         private void FileListView_MouseClick(object sender, MouseEventArgs e)
