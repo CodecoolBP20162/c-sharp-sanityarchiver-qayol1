@@ -81,7 +81,7 @@ namespace SanityArchiver
             }
             foreach (FileInfo file in FileList)
             {
-                ListViewItem item = FileListView.Items.Add(file.Name);
+                ListViewItem item = FileListView.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
                 item.SubItems.Add(file.FullName);
                 item.SubItems.Add(file.Extension);
                 item.SubItems.Add(ConvertBytes(file.Length));
@@ -152,7 +152,7 @@ namespace SanityArchiver
             else
             {
                 var form = new FileMenu();
-                form.file = FileListView.FocusedItem.SubItems[1].Text;
+                form.FullFileName = FileListView.FocusedItem.SubItems[1].Text;
                 form.Text = FileListView.FocusedItem.SubItems[0].Text;
                 form.ShowDialog(this);
             }
