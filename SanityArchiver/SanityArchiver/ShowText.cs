@@ -14,7 +14,8 @@ namespace SanityArchiver
     public partial class ShowText : Form
     {
 
-        public String FullFileName;
+        public String FileName;
+        public int action;
 
         public ShowText()
         {
@@ -23,12 +24,42 @@ namespace SanityArchiver
 
         private void ShowText_Load(object sender, EventArgs e)
         {
-            string[] lines = File.ReadAllLines(FullFileName);
-            foreach (string line in lines)
+            if (action == 1)
             {
-                FileText.Items.Add(line);
+                string[] lines = File.ReadAllLines(FileName);
+                foreach (string line in lines)
+                {
+                    FileText.Items.Add(line);
+                }
+                action = 0;
             }
+            if (action == 2)
+            {
+                FileText.Items.Clear();
+                DirSearch("c:/");
+                action = 0;
+            }
+            
 
+        }
+
+        void DirSearch(string sDir)
+        {
+            try
+            {
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+                    foreach (string f in Directory.GetFiles(d, FileName))
+                    {
+                        FileText.Items.Add(f);
+                    }
+                    DirSearch(d);
+                }
+            }
+            catch (System.Exception excpt)
+            {
+                Console.WriteLine(excpt.Message);
+            }
         }
     }
 }

@@ -87,7 +87,7 @@ namespace SanityArchiver
             ShowData();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void backButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -207,7 +207,8 @@ namespace SanityArchiver
         private void readToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new ShowText();
-            form.FullFileName = FileListView.FocusedItem.SubItems[1].Text;
+            form.action = 1;
+            form.FileName = FileListView.FocusedItem.SubItems[1].Text;
             form.Text = FileListView.FocusedItem.SubItems[0].Text;
             form.ShowDialog(this);
         }
@@ -241,6 +242,16 @@ namespace SanityArchiver
 
         }
 
-
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            if (searchBox.Text.Length>0)
+            {
+                var form = new ShowText();
+                form.action = 2;
+                form.Text = "File: " + searchBox.Text + " search result:";
+                form.FileName = searchBox.Text;
+                form.ShowDialog(this);
+            }
+        }
     }
 }
