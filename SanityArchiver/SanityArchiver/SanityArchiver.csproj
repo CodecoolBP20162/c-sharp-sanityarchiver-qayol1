@@ -53,6 +53,7 @@
     <Compile Include="FileMenu.Designer.cs">
       <DependentUpon>FileMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileSystemData.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

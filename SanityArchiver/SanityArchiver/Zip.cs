@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SanityArchiver
 {
     public class Zip
     {
-        public static void ArchiveFile(FileInfo fileToArchive)
+        public static void CompressFile(FileInfo fileToArchive)
         {
             try
             {
@@ -35,7 +30,7 @@ namespace SanityArchiver
             }
         }
 
-        public static void Decompress(FileInfo fileToDecompress)
+        public static void DecompressFile(FileInfo fileToDecompress)
         {
             FileStream originalFileStream = fileToDecompress.OpenRead();
             {

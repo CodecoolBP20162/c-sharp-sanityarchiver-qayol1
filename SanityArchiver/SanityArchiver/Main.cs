@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Windows.Forms;
 
 namespace SanityArchiver
 {
     public partial class MainForm : Form
     {
-
-        static DirectoryInfo currentDirectory;
-        static List<FileInfo> FileList;
-        static List<DirectoryInfo> DirList;
         static String path;
         static ListViewItem SelectedItem;
         static Dictionary<string, string> MimeTypes = Extensions.MimeTypes;
@@ -23,62 +18,23 @@ namespace SanityArchiver
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            FileList = new List<FileInfo>();
-            DirList = new List<DirectoryInfo>();
             path = "C:/";
+            FileSystemData.FillData(path);
             FileListView.SmallImageList = this.imageList1;
-            FillData();
             ShowData();    
-        }
-
-        private void FillData()
-        {
-            currentDirectory = new DirectoryInfo(path);
-            AddFiles();
-            AddDirectories();
-        }
-
-        private void AddDirectories()
-        {
-            DirList.Clear();
-            try
-            {
-                foreach (DirectoryInfo dir in currentDirectory.GetDirectories())
-                {
-                    DirList.Add(dir);
-                }
-            } catch (UnauthorizedAccessException)
-            {
-
-            }       
-        }
-
-        private void AddFiles()
-        {
-            FileList.Clear();
-            try
-            {
-                foreach (FileInfo fil in currentDirectory.GetFiles())
-                {
-                    FileList.Add(fil);
-                }
-            } catch (UnauthorizedAccessException)
-            {
-                MessageBox.Show("You have no acces to this directory.", "Acces denied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }      
         }
 
         private void ShowData()
         {
             FileListView.Items.Clear();
-            foreach (DirectoryInfo dir in DirList)
+            foreach (DirectoryInfo dir in FileSystemData.DirList)
             {
                 ListViewItem item = FileListView.Items.Add(dir.Name);
                 item.ImageIndex = 1;
                 item.SubItems.Add(dir.FullName);
                 item.SubItems.Add("File folder");
             }
-            foreach (FileInfo file in FileList)
+            foreach (FileInfo file in FileSystemData.FileList)
             {
                 ListViewItem item = FileListView.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
                 item.SubItems.Add(file.FullName);
@@ -107,7 +63,7 @@ namespace SanityArchiver
                 }
                 item.SubItems.Add(ByteConverter.ConvertBytes(file.Length));
             }
-            PathBox.Text = currentDirectory.FullName;
+            PathBox.Text = FileSystemData.currentDirectory.FullName;
             FileListView.Columns[1].Width = 0;
             for (int i=0; i<FileListView.Columns.Count; i++)
             {
@@ -119,11 +75,15 @@ namespace SanityArchiver
             }
         }
        
-        
         private void GoToNewDir()
         {
             PathBox.Text = path;
-            FillData();
+            RefressFileListView();
+        }
+
+        private void RefressFileListView()
+        {
+            FileSystemData.FillData(path);
             ShowData();
         }
 
@@ -131,8 +91,8 @@ namespace SanityArchiver
         {
             try
             {
-                currentDirectory = Directory.GetParent(path);
-                path = currentDirectory.FullName;
+                FileSystemData.currentDirectory = Directory.GetParent(path);
+                path = FileSystemData.currentDirectory.FullName;
                 GoToNewDir();
             } catch (NullReferenceException)
             {
@@ -235,9 +195,8 @@ namespace SanityArchiver
         private void archiveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
-            Zip.ArchiveFile(file);
-            FillData();
-            ShowData();
+            Zip.CompressFile(file);
+            RefressFileListView();
         }
 
         private void readToolStripMenuItem_Click(object sender, EventArgs e)
@@ -251,9 +210,8 @@ namespace SanityArchiver
         private void zipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
-            Zip.ArchiveFile(file);
-            FillData();
-            ShowData();
+            Zip.CompressFile(file);
+            RefressFileListView();
         }
 
         private void cryptToolStripMenuItem_Click(object sender, EventArgs e)
@@ -292,9 +250,8 @@ namespace SanityArchiver
         private void decompressToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
-            Zip.Decompress(file);
-            FillData();
-            ShowData();
+            Zip.DecompressFile(file);
+            RefressFileListView();
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
