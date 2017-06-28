@@ -20,6 +20,7 @@ namespace SanityArchiver
         static List<DirectoryInfo> DirList;
         static String path;
         static ListViewItem SelectedItem;
+        static Dictionary<string, string> MimeTypes = Extensions.MimeTypes;
 
         public MainForm()
         {
@@ -87,7 +88,22 @@ namespace SanityArchiver
             {
                 ListViewItem item = FileListView.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
                 item.SubItems.Add(file.FullName);
-                item.SubItems.Add(file.Extension);
+                String fileExtension;
+                if (file.Extension.Length>0)
+                {
+                    fileExtension = file.Extension.Substring(1);
+                } else
+                {
+                    fileExtension = file.Extension;
+                }
+                if (MimeTypes.ContainsKey(fileExtension))
+                {
+                    item.SubItems.Add(MimeTypes[fileExtension]);
+                } else
+                {
+                    item.SubItems.Add(fileExtension);
+                }
+                    
                 if (file.Extension.Equals(".txt"))
                 {
                     item.ImageIndex = 2;
@@ -196,7 +212,7 @@ namespace SanityArchiver
             if (e.Button == MouseButtons.Right)
             {
                 SelectedItem = FileListView.FocusedItem;
-                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && SelectedItem.SubItems[2].Text.Equals(".txt"))
+                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && SelectedItem.SubItems[2].Text.Equals("text/plain"))
                 {
                     TxtFileContextMenuStrip.Show(Cursor.Position);
                     
@@ -205,7 +221,7 @@ namespace SanityArchiver
                 {
                     DirContextMenuStrip.Show(Cursor.Position);
                 }
-                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && !SelectedItem.SubItems[2].Text.Equals(".txt"))
+                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && !SelectedItem.SubItems[2].Text.Equals("text/plain"))
                 {
                     FileContextMenuStrip.Show(Cursor.Position);
                 }
