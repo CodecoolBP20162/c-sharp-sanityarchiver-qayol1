@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SanityArchiver
@@ -22,8 +15,6 @@ namespace SanityArchiver
         static String path;
         static ListViewItem SelectedItem;
         static Dictionary<string, string> MimeTypes = Extensions.MimeTypes;
-        public readonly byte[] salt = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }; 
-        public const int iterations = 1042;
 
         public MainForm()
         {
@@ -114,7 +105,7 @@ namespace SanityArchiver
                 {
                     item.ImageIndex = 0;
                 }
-                item.SubItems.Add(ConvertBytes(file.Length));
+                item.SubItems.Add(ByteConverter.ConvertBytes(file.Length));
             }
             PathBox.Text = currentDirectory.FullName;
             FileListView.Columns[1].Width = 0;
@@ -128,27 +119,6 @@ namespace SanityArchiver
             }
         }
        
-        private string ConvertBytes(double FileLength)
-        {
-            if (FileLength < 1024)
-            {
-                return FileLength.ToString() + " byte";
-            }
-            if (FileLength >= 1024 && FileLength < 1024 * 1024)
-            {
-                return (FileLength / 1024).ToString("n2") + " kB";
-            }
-            if (FileLength >= 1024 * 1024 && FileLength < 1024 * 1024 * 1024)
-            {
-                return (FileLength / (1024 * 1024)).ToString("n2") + " MB";
-            }
-            if (FileLength >= 1024 * 1024 * 1024)
-            {
-                return (FileLength / (1024 * 1024 * 1024)).ToString("n2") + " GB";
-            }
-            return "";
-        }
-
         
         private void GoToNewDir()
         {
@@ -186,29 +156,6 @@ namespace SanityArchiver
             }
         }
 
-        private void ArchiveFile(FileInfo fileToArchive)
-        {
-            try
-            {
-                FileStream input = fileToArchive.OpenRead();
-                FileStream output = File.Create(fileToArchive.Directory + @"\" + Path.GetFileNameWithoutExtension(fileToArchive.Name) + ".gz");
-                GZipStream Compressor = new GZipStream(output, CompressionMode.Compress);
-                int b = input.ReadByte();
-                while (b != -1)
-                {
-                    Compressor.WriteByte((byte)b);
-
-                    b = input.ReadByte();
-                }
-                Compressor.Close();
-                input.Close();
-                output.Close();
-            } catch
-            {
-                MessageBox.Show("You have no acces to this file.", "Acces denied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            
-        }
 
         private void FileListView_MouseClick(object sender, MouseEventArgs e)
         {
@@ -288,7 +235,7 @@ namespace SanityArchiver
         private void archiveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
-            ArchiveFile(file);
+            Zip.ArchiveFile(file);
             FillData();
             ShowData();
         }
@@ -304,7 +251,7 @@ namespace SanityArchiver
         private void zipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
-            ArchiveFile(file);
+            Zip.ArchiveFile(file);
             FillData();
             ShowData();
         }
@@ -316,7 +263,7 @@ namespace SanityArchiver
 
         private void sizeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-           SelectedItem.SubItems.Add(ConvertBytes(DirSize(new DirectoryInfo(SelectedItem.SubItems[1].Text))));
+           SelectedItem.SubItems.Add(ByteConverter.ConvertBytes(DirSize(new DirectoryInfo(SelectedItem.SubItems[1].Text))));
         }
 
         public static long DirSize(DirectoryInfo d)
@@ -342,27 +289,10 @@ namespace SanityArchiver
             
         }
 
-        public static void Decompress(FileInfo fileToDecompress)
-        {
-            FileStream originalFileStream = fileToDecompress.OpenRead();
-            {
-                string currentFileName = fileToDecompress.FullName;
-                string newFileName = currentFileName.Remove(currentFileName.Length - fileToDecompress.Extension.Length);
-
-                using (FileStream decompressedFileStream = File.Create(newFileName))
-                {
-                    using (GZipStream decompressionStream = new GZipStream(originalFileStream, CompressionMode.Decompress))
-                    {
-                        decompressionStream.CopyTo(decompressedFileStream);
-                    }
-                }
-            }
-        }
-
         private void decompressToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
-            Decompress(file);
+            Zip.Decompress(file);
             FillData();
             ShowData();
         }

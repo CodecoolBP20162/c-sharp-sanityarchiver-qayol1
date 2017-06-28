@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ByteConverter.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FileMenu.cs">
       <SubType>Form</SubType>
@@ -66,6 +67,7 @@
     <Compile Include="ShowText.Designer.cs">
       <DependentUpon>ShowText.cs</DependentUpon>
     </Compile>
+    <Compile Include="Zip.cs" />
     <EmbeddedResource Include="FileMenu.resx">
       <DependentUpon>FileMenu.cs</DependentUpon>
     </EmbeddedResource>
