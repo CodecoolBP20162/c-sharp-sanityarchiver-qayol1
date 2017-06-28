@@ -38,21 +38,15 @@
             this.PathBox = new System.Windows.Forms.TextBox();
             this.PathLabel = new System.Windows.Forms.Label();
             this.BackButton = new System.Windows.Forms.Button();
-            this.TxtFileContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FileContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.zipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cryptToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.DirContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.sizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.TxtFileContextMenuStrip.SuspendLayout();
-            this.FileContextMenuStrip.SuspendLayout();
-            this.DirContextMenuStrip.SuspendLayout();
+            this.decompressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // FileListView
@@ -117,87 +111,52 @@
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // TxtFileContextMenuStrip
+            // ContextMenuStrip
             // 
-            this.TxtFileContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem,
             this.archiveToolStripMenuItem,
             this.readToolStripMenuItem,
-            this.cryptToolStripMenuItem});
-            this.TxtFileContextMenuStrip.Name = "TxtFileContextMenuStrip";
-            this.TxtFileContextMenuStrip.Size = new System.Drawing.Size(104, 92);
+            this.cryptToolStripMenuItem,
+            this.sizeToolStripMenuItem1,
+            this.decompressToolStripMenuItem});
+            this.ContextMenuStrip.Name = "TxtFileContextMenuStrip";
+            this.ContextMenuStrip.Size = new System.Drawing.Size(153, 158);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // archiveToolStripMenuItem
             // 
             this.archiveToolStripMenuItem.Name = "archiveToolStripMenuItem";
-            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.archiveToolStripMenuItem.Text = "Zip";
             this.archiveToolStripMenuItem.Click += new System.EventHandler(this.archiveToolStripMenuItem_Click);
             // 
             // readToolStripMenuItem
             // 
             this.readToolStripMenuItem.Name = "readToolStripMenuItem";
-            this.readToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.readToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.readToolStripMenuItem.Text = "Read";
             this.readToolStripMenuItem.Click += new System.EventHandler(this.readToolStripMenuItem_Click);
             // 
             // cryptToolStripMenuItem
             // 
             this.cryptToolStripMenuItem.Name = "cryptToolStripMenuItem";
-            this.cryptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cryptToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.cryptToolStripMenuItem.Text = "Crypt";
             this.cryptToolStripMenuItem.Click += new System.EventHandler(this.cryptToolStripMenuItem_Click);
             // 
-            // FileContextMenuStrip
+            // sizeToolStripMenuItem1
             // 
-            this.FileContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem1,
-            this.zipToolStripMenuItem,
-            this.cryptToolStripMenuItem1});
-            this.FileContextMenuStrip.Name = "FileContextMenuStrip";
-            this.FileContextMenuStrip.Size = new System.Drawing.Size(104, 70);
-            // 
-            // copyToolStripMenuItem1
-            // 
-            this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
-            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.copyToolStripMenuItem1.Text = "Copy";
-            this.copyToolStripMenuItem1.Click += new System.EventHandler(this.copyToolStripMenuItem1_Click);
-            // 
-            // zipToolStripMenuItem
-            // 
-            this.zipToolStripMenuItem.Name = "zipToolStripMenuItem";
-            this.zipToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.zipToolStripMenuItem.Text = "Zip";
-            this.zipToolStripMenuItem.Click += new System.EventHandler(this.zipToolStripMenuItem_Click);
-            // 
-            // cryptToolStripMenuItem1
-            // 
-            this.cryptToolStripMenuItem1.Name = "cryptToolStripMenuItem1";
-            this.cryptToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.cryptToolStripMenuItem1.Text = "Crypt";
-            this.cryptToolStripMenuItem1.Click += new System.EventHandler(this.cryptToolStripMenuItem1_Click);
-            // 
-            // DirContextMenuStrip
-            // 
-            this.DirContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sizeToolStripMenuItem});
-            this.DirContextMenuStrip.Name = "DirContextMenuStrip";
-            this.DirContextMenuStrip.Size = new System.Drawing.Size(95, 26);
-            // 
-            // sizeToolStripMenuItem
-            // 
-            this.sizeToolStripMenuItem.Name = "sizeToolStripMenuItem";
-            this.sizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sizeToolStripMenuItem.Text = "Size";
-            this.sizeToolStripMenuItem.Click += new System.EventHandler(this.sizeToolStripMenuItem_Click);
+            this.sizeToolStripMenuItem1.Name = "sizeToolStripMenuItem1";
+            this.sizeToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.sizeToolStripMenuItem1.Text = "Size";
+            this.sizeToolStripMenuItem1.Click += new System.EventHandler(this.sizeToolStripMenuItem1_Click);
             // 
             // imageList1
             // 
@@ -206,6 +165,13 @@
             this.imageList1.Images.SetKeyName(0, "file.png");
             this.imageList1.Images.SetKeyName(1, "folder.jpg");
             this.imageList1.Images.SetKeyName(2, "txtfile.png");
+            // 
+            // decompressToolStripMenuItem
+            // 
+            this.decompressToolStripMenuItem.Name = "decompressToolStripMenuItem";
+            this.decompressToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.decompressToolStripMenuItem.Text = "Decompress";
+            this.decompressToolStripMenuItem.Click += new System.EventHandler(this.decompressToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -219,9 +185,7 @@
             this.Name = "MainForm";
             this.Text = "SanityExplorer";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.TxtFileContextMenuStrip.ResumeLayout(false);
-            this.FileContextMenuStrip.ResumeLayout(false);
-            this.DirContextMenuStrip.ResumeLayout(false);
+            this.ContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,18 +200,14 @@
         private System.Windows.Forms.Label PathLabel;
         private System.Windows.Forms.ColumnHeader Column3;
         private System.Windows.Forms.Button BackButton;
-        private System.Windows.Forms.ContextMenuStrip TxtFileContextMenuStrip;
+        private System.Windows.Forms.ContextMenuStrip ContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem archiveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem readToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cryptToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip FileContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem zipToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cryptToolStripMenuItem1;
-        private System.Windows.Forms.ContextMenuStrip DirContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem sizeToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripMenuItem sizeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem decompressToolStripMenuItem;
     }
 }
 

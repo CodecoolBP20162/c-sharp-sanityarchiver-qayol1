@@ -34,8 +34,10 @@
             // FileText
             // 
             this.FileText.FormattingEnabled = true;
+            this.FileText.HorizontalScrollbar = true;
             this.FileText.Location = new System.Drawing.Point(13, 13);
             this.FileText.Name = "FileText";
+            this.FileText.ScrollAlwaysVisible = true;
             this.FileText.Size = new System.Drawing.Size(543, 472);
             this.FileText.TabIndex = 0;
             // 
@@ -47,6 +49,7 @@
             this.Controls.Add(this.FileText);
             this.Name = "ShowText";
             this.Text = "ShowText";
+            this.Load += new System.EventHandler(this.ShowText_Load);
             this.ResumeLayout(false);
 
         }

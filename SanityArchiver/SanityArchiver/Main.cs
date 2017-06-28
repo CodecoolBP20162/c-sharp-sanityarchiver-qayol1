@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +22,8 @@ namespace SanityArchiver
         static String path;
         static ListViewItem SelectedItem;
         static Dictionary<string, string> MimeTypes = Extensions.MimeTypes;
+        public readonly byte[] salt = new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }; 
+        public const int iterations = 1042;
 
         public MainForm()
         {
@@ -212,18 +215,67 @@ namespace SanityArchiver
             if (e.Button == MouseButtons.Right)
             {
                 SelectedItem = FileListView.FocusedItem;
-                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && SelectedItem.SubItems[2].Text.Equals("text/plain"))
+                if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("text/plain"))
                 {
-                    TxtFileContextMenuStrip.Show(Cursor.Position);
-                    
+                    ContextMenuStrip.Show(Cursor.Position);
+                    for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
+                    {
+                        if (i == 0 || i == 1 || i == 2 || i == 3)
+                        {
+                            ContextMenuStrip.Items[i].Visible = true;
+                        }
+                        else
+                        {
+                            ContextMenuStrip.Items[i].Visible = false;
+                        }
+                    }
+
+                }
+                if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("gz"))
+                {
+                    ContextMenuStrip.Show(Cursor.Position);
+                    for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
+                    {
+                        if (i == 0 || i == 3 || i == 5)
+                        {
+                            ContextMenuStrip.Items[i].Visible = true;
+                        }
+                        else
+                        {
+                            ContextMenuStrip.Items[i].Visible = false;
+                        }
+                    }
+
                 }
                 if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("File folder"))
                 {
-                    DirContextMenuStrip.Show(Cursor.Position);
+                    ContextMenuStrip.Show(Cursor.Position);
+                    for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
+                    {
+                        if (i == 4)
+                        {
+                            ContextMenuStrip.Items[i].Visible = true;
+                        }  else
+                        {
+                            ContextMenuStrip.Items[i].Visible = false;
+                        }
+                    }
+                    
                 }
-                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && !SelectedItem.SubItems[2].Text.Equals("text/plain"))
+                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && !SelectedItem.SubItems[2].Text.Equals("text/plain") && !SelectedItem.SubItems[2].Text.Equals("gz"))
                 {
-                    FileContextMenuStrip.Show(Cursor.Position);
+                    ContextMenuStrip.Show(Cursor.Position);
+                    for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
+                    {
+                        if (i == 0 || i == 1 || i == 3 )
+                        {
+                            ContextMenuStrip.Items[i].Visible = true;
+                        }
+                        else
+                        {
+                            ContextMenuStrip.Items[i].Visible = false;
+                        }
+                    }
                 }
             }
         }
@@ -243,17 +295,10 @@ namespace SanityArchiver
 
         private void readToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void cryptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void copyToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
+            var form = new ShowText();
+            form.FullFileName = FileListView.FocusedItem.SubItems[1].Text;
+            form.Text = FileListView.FocusedItem.SubItems[0].Text;
+            form.ShowDialog(this);
         }
 
         private void zipToolStripMenuItem_Click(object sender, EventArgs e)
@@ -264,14 +309,62 @@ namespace SanityArchiver
             ShowData();
         }
 
-        private void cryptToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void cryptToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+               
         }
 
-        private void sizeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sizeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+           SelectedItem.SubItems.Add(ConvertBytes(DirSize(new DirectoryInfo(SelectedItem.SubItems[1].Text))));
+        }
 
+        public static long DirSize(DirectoryInfo d)
+        {
+            long size = 0;
+            try
+            {
+                FileInfo[] fis = d.GetFiles();
+                foreach (FileInfo fi in fis)
+                {
+                    size += fi.Length;
+                }
+                DirectoryInfo[] dis = d.GetDirectories();
+                foreach (DirectoryInfo di in dis)
+                {
+                    size += DirSize(di);
+                }
+                return size;
+            } catch
+            {
+                return 0;
+            }
+            
+        }
+
+        public static void Decompress(FileInfo fileToDecompress)
+        {
+            FileStream originalFileStream = fileToDecompress.OpenRead();
+            {
+                string currentFileName = fileToDecompress.FullName;
+                string newFileName = currentFileName.Remove(currentFileName.Length - fileToDecompress.Extension.Length);
+
+                using (FileStream decompressedFileStream = File.Create(newFileName))
+                {
+                    using (GZipStream decompressionStream = new GZipStream(originalFileStream, CompressionMode.Decompress))
+                    {
+                        decompressionStream.CopyTo(decompressedFileStream);
+                    }
+                }
+            }
+        }
+
+        private void decompressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
+            Decompress(file);
+            FillData();
+            ShowData();
         }
     }
 }
