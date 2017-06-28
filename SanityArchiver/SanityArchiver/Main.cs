@@ -5,6 +5,8 @@ using System.Windows.Forms;
 
 namespace SanityArchiver
 {
+
+
     public partial class MainForm : Form
     {
         static String path;
@@ -18,10 +20,11 @@ namespace SanityArchiver
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            path = "C:/";
-            FileSystemData.FillData(path);
-            FileListView.SmallImageList = this.imageList1;
-            ShowData();    
+            DriveInfo[] allDrives = DriveInfo.GetDrives();
+            foreach (DriveInfo d in allDrives)
+            {
+                DriversComboBox.Items.Add(d.Name);
+            } 
         }
 
         private void ShowData()
@@ -252,6 +255,15 @@ namespace SanityArchiver
                 form.FileName = searchBox.Text;
                 form.ShowDialog(this);
             }
+        }
+
+        private void DriversComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = this.DriversComboBox.GetItemText(this.DriversComboBox.SelectedItem);
+            path = selected;
+            FileSystemData.FillData(path);
+            FileListView.SmallImageList = this.imageList1;
+            ShowData();
         }
     }
 }

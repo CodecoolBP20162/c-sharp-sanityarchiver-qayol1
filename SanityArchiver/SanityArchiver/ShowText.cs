@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SanityArchiver
@@ -26,6 +19,7 @@ namespace SanityArchiver
         {
             if (action == 1)
             {
+                FileText.Items.Clear();
                 string[] lines = File.ReadAllLines(FileName);
                 foreach (string line in lines)
                 {
@@ -47,18 +41,18 @@ namespace SanityArchiver
         {
             try
             {
-                foreach (string d in Directory.GetDirectories(sDir))
+                foreach (string dir in Directory.GetDirectories(sDir))
                 {
-                    foreach (string f in Directory.GetFiles(d, FileName))
+                    foreach (string file in Directory.GetFiles(dir, FileName))
                     {
-                        FileText.Items.Add(f);
+                        FileText.Items.Add(file);
                     }
-                    DirSearch(d);
+                    DirSearch(dir);
                 }
             }
-            catch (System.Exception excpt)
+            catch
             {
-                Console.WriteLine(excpt.Message);
+               
             }
         }
     }
