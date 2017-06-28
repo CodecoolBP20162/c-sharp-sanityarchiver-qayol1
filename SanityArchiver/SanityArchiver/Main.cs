@@ -192,6 +192,11 @@ namespace SanityArchiver
 
         }
 
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void archiveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
@@ -214,39 +219,6 @@ namespace SanityArchiver
             RefressFileListView();
         }
 
-        private void cryptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-               
-        }
-
-        private void sizeToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-           SelectedItem.SubItems.Add(ByteConverter.ConvertBytes(DirSize(new DirectoryInfo(SelectedItem.SubItems[1].Text))));
-        }
-
-        public static long DirSize(DirectoryInfo d)
-        {
-            long size = 0;
-            try
-            {
-                FileInfo[] fis = d.GetFiles();
-                foreach (FileInfo fi in fis)
-                {
-                    size += fi.Length;
-                }
-                DirectoryInfo[] dis = d.GetDirectories();
-                foreach (DirectoryInfo di in dis)
-                {
-                    size += DirSize(di);
-                }
-                return size;
-            } catch
-            {
-                return 0;
-            }
-            
-        }
-
         private void decompressToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileInfo file = new FileInfo(SelectedItem.SubItems[1].Text);
@@ -254,9 +226,21 @@ namespace SanityArchiver
             RefressFileListView();
         }
 
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sizeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+           SelectedItem.SubItems.Add(ByteConverter.ConvertBytes(DirSize.GetSize(new DirectoryInfo(SelectedItem.SubItems[1].Text))));
+        }
+
+        private void cryptToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void decryptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

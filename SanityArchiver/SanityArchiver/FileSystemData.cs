@@ -30,7 +30,7 @@ namespace SanityArchiver
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("You have no acces to this directory.", "Acces denied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("You have no acces to the files of this directory.", "Acces denied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

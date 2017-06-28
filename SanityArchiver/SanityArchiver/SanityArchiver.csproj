@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteConverter.cs" />
+    <Compile Include="DirSize.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FileMenu.cs">
       <SubType>Form</SubType>
