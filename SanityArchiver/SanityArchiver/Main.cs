@@ -220,7 +220,7 @@ namespace SanityArchiver
                     ContextMenuStrip.Show(Cursor.Position);
                     for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
                     {
-                        if (i == 0 || i == 1 || i == 2 || i == 3)
+                        if (i == 0 || i == 1 || i == 3 || i == 5 || i == 6 || i == 7)
                         {
                             ContextMenuStrip.Items[i].Visible = true;
                         }
@@ -236,7 +236,7 @@ namespace SanityArchiver
                     ContextMenuStrip.Show(Cursor.Position);
                     for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
                     {
-                        if (i == 0 || i == 3 || i == 5)
+                        if (i == 0 || i == 1 || i == 4 || i == 6 || i == 7)
                         {
                             ContextMenuStrip.Items[i].Visible = true;
                         }
@@ -252,7 +252,7 @@ namespace SanityArchiver
                     ContextMenuStrip.Show(Cursor.Position);
                     for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
                     {
-                        if (i == 4)
+                        if (i == 8)
                         {
                             ContextMenuStrip.Items[i].Visible = true;
                         }  else
@@ -267,7 +267,7 @@ namespace SanityArchiver
                     ContextMenuStrip.Show(Cursor.Position);
                     for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
                     {
-                        if (i == 0 || i == 1 || i == 3 )
+                        if (i == 0 || i == 1 || i == 3 || i == 6 || i == 7 )
                         {
                             ContextMenuStrip.Items[i].Visible = true;
                         }
@@ -365,6 +365,11 @@ namespace SanityArchiver
             Decompress(file);
             FillData();
             ShowData();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

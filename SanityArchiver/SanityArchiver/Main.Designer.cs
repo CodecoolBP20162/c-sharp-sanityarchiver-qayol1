@@ -46,6 +46,9 @@
             this.sizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.decompressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,13 +118,16 @@
             // 
             this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem,
+            this.cutToolStripMenuItem,
+            this.pasteToolStripMenuItem,
             this.archiveToolStripMenuItem,
+            this.decompressToolStripMenuItem,
             this.readToolStripMenuItem,
             this.cryptToolStripMenuItem,
-            this.sizeToolStripMenuItem1,
-            this.decompressToolStripMenuItem});
+            this.decryptToolStripMenuItem,
+            this.sizeToolStripMenuItem1});
             this.ContextMenuStrip.Name = "TxtFileContextMenuStrip";
-            this.ContextMenuStrip.Size = new System.Drawing.Size(153, 158);
+            this.ContextMenuStrip.Size = new System.Drawing.Size(153, 224);
             // 
             // copyToolStripMenuItem
             // 
@@ -173,6 +179,25 @@
             this.decompressToolStripMenuItem.Text = "Decompress";
             this.decompressToolStripMenuItem.Click += new System.EventHandler(this.decompressToolStripMenuItem_Click);
             // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // cutToolStripMenuItem
+            // 
+            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cutToolStripMenuItem.Text = "Cut";
+            // 
+            // decryptToolStripMenuItem
+            // 
+            this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
+            this.decryptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.decryptToolStripMenuItem.Text = "Decrypt";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -208,6 +233,9 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripMenuItem sizeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem decompressToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem decryptToolStripMenuItem;
     }
 }
 
