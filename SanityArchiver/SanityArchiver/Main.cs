@@ -30,7 +30,7 @@ namespace SanityArchiver
             foreach (DirectoryInfo dir in FileSystemData.DirList)
             {
                 ListViewItem item = FileListView.Items.Add(dir.Name);
-                item.ImageIndex = 1;
+                item.ImageIndex = 0;
                 item.SubItems.Add(dir.FullName);
                 item.SubItems.Add("File folder");
             }
@@ -56,10 +56,10 @@ namespace SanityArchiver
                     
                 if (file.Extension.Equals(".txt"))
                 {
-                    item.ImageIndex = 2;
+                    item.ImageIndex = 3;
                 } else
                 {
-                    item.ImageIndex = 0;
+                    item.ImageIndex = 2;
                 }
                 item.SubItems.Add(ByteConverter.ConvertBytes(file.Length));
             }

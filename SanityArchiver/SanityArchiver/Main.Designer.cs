@@ -36,7 +36,6 @@
             this.Column2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PathBox = new System.Windows.Forms.TextBox();
-            this.PathLabel = new System.Windows.Forms.Label();
             this.BackButton = new System.Windows.Forms.Button();
             this.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +48,8 @@
             this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             this.Column1,
             this.Column2,
             this.Column3});
-            this.FileListView.Location = new System.Drawing.Point(12, 59);
+            this.FileListView.Location = new System.Drawing.Point(12, 84);
             this.FileListView.Name = "FileListView";
             this.FileListView.Size = new System.Drawing.Size(439, 406);
             this.FileListView.TabIndex = 1;
@@ -89,28 +90,20 @@
             // 
             // PathBox
             // 
-            this.PathBox.Location = new System.Drawing.Point(129, 33);
+            this.PathBox.Location = new System.Drawing.Point(48, 50);
             this.PathBox.Name = "PathBox";
             this.PathBox.ReadOnly = true;
-            this.PathBox.Size = new System.Drawing.Size(322, 20);
+            this.PathBox.Size = new System.Drawing.Size(403, 20);
             this.PathBox.TabIndex = 2;
-            // 
-            // PathLabel
-            // 
-            this.PathLabel.AutoSize = true;
-            this.PathLabel.Location = new System.Drawing.Point(91, 36);
-            this.PathLabel.Name = "PathLabel";
-            this.PathLabel.Size = new System.Drawing.Size(32, 13);
-            this.PathLabel.TabIndex = 3;
-            this.PathLabel.Text = "Path:";
             // 
             // BackButton
             // 
-            this.BackButton.Location = new System.Drawing.Point(12, 30);
+            this.BackButton.ImageKey = "340.png";
+            this.BackButton.ImageList = this.imageList1;
+            this.BackButton.Location = new System.Drawing.Point(12, 44);
             this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(44, 23);
+            this.BackButton.Size = new System.Drawing.Size(30, 30);
             this.BackButton.TabIndex = 4;
-            this.BackButton.Text = "<--";
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -127,67 +120,67 @@
             this.decryptToolStripMenuItem,
             this.sizeToolStripMenuItem1});
             this.ContextMenuStrip.Name = "TxtFileContextMenuStrip";
-            this.ContextMenuStrip.Size = new System.Drawing.Size(153, 224);
+            this.ContextMenuStrip.Size = new System.Drawing.Size(140, 202);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.cutToolStripMenuItem.Text = "Cut";
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // archiveToolStripMenuItem
             // 
             this.archiveToolStripMenuItem.Name = "archiveToolStripMenuItem";
-            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.archiveToolStripMenuItem.Text = "Zip";
             this.archiveToolStripMenuItem.Click += new System.EventHandler(this.archiveToolStripMenuItem_Click);
             // 
             // decompressToolStripMenuItem
             // 
             this.decompressToolStripMenuItem.Name = "decompressToolStripMenuItem";
-            this.decompressToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.decompressToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.decompressToolStripMenuItem.Text = "Decompress";
             this.decompressToolStripMenuItem.Click += new System.EventHandler(this.decompressToolStripMenuItem_Click);
             // 
             // readToolStripMenuItem
             // 
             this.readToolStripMenuItem.Name = "readToolStripMenuItem";
-            this.readToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.readToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.readToolStripMenuItem.Text = "Read";
             this.readToolStripMenuItem.Click += new System.EventHandler(this.readToolStripMenuItem_Click);
             // 
             // cryptToolStripMenuItem
             // 
             this.cryptToolStripMenuItem.Name = "cryptToolStripMenuItem";
-            this.cryptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cryptToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.cryptToolStripMenuItem.Text = "Crypt";
             this.cryptToolStripMenuItem.Click += new System.EventHandler(this.cryptToolStripMenuItem_Click);
             // 
             // decryptToolStripMenuItem
             // 
             this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
-            this.decryptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.decryptToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.decryptToolStripMenuItem.Text = "Decrypt";
             this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
             // 
             // sizeToolStripMenuItem1
             // 
             this.sizeToolStripMenuItem1.Name = "sizeToolStripMenuItem1";
-            this.sizeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.sizeToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
             this.sizeToolStripMenuItem1.Text = "Size";
             this.sizeToolStripMenuItem1.Click += new System.EventHandler(this.sizeToolStripMenuItem1_Click);
             // 
@@ -195,17 +188,37 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "file.png");
-            this.imageList1.Images.SetKeyName(1, "folder.jpg");
-            this.imageList1.Images.SetKeyName(2, "txtfile.png");
+            this.imageList1.Images.SetKeyName(0, "folder.jpg");
+            this.imageList1.Images.SetKeyName(1, "find.png");
+            this.imageList1.Images.SetKeyName(2, "file2.jpg");
+            this.imageList1.Images.SetKeyName(3, "txt.png");
+            this.imageList1.Images.SetKeyName(4, "340.png");
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(315, 18);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.ImageKey = "find.png";
+            this.button1.ImageList = this.imageList1;
+            this.button1.Location = new System.Drawing.Point(421, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 30);
+            this.button1.TabIndex = 6;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 479);
+            this.ClientSize = new System.Drawing.Size(473, 504);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.PathLabel);
             this.Controls.Add(this.PathBox);
             this.Controls.Add(this.FileListView);
             this.Name = "MainForm";
@@ -223,7 +236,6 @@
         private System.Windows.Forms.ColumnHeader Column1;
         private System.Windows.Forms.ColumnHeader Column2;
         private System.Windows.Forms.TextBox PathBox;
-        private System.Windows.Forms.Label PathLabel;
         private System.Windows.Forms.ColumnHeader Column3;
         private System.Windows.Forms.Button BackButton;
         private System.Windows.Forms.ContextMenuStrip ContextMenuStrip;
@@ -237,6 +249,8 @@
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem decryptToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
