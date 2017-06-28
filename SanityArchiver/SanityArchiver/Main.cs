@@ -27,6 +27,15 @@ namespace SanityArchiver
             } 
         }
 
+        private void DriversComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = this.DriversComboBox.GetItemText(this.DriversComboBox.SelectedItem);
+            path = selected;
+            FileSystemData.FillData(path);
+            FileListView.SmallImageList = this.imageList1;
+            ShowData();
+        }
+
         private void ShowData()
         {
             FileListView.Items.Clear();
@@ -257,13 +266,6 @@ namespace SanityArchiver
             }
         }
 
-        private void DriversComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selected = this.DriversComboBox.GetItemText(this.DriversComboBox.SelectedItem);
-            path = selected;
-            FileSystemData.FillData(path);
-            FileListView.SmallImageList = this.imageList1;
-            ShowData();
-        }
+        
     }
 }
