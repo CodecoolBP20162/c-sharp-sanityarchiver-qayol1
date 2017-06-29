@@ -4,14 +4,15 @@ using System.Windows.Forms;
 
 namespace SanityArchiver
 {
-    
+
     public partial class MainForm : Form
     {
         public String path;
-        ListViewItem SelectedItem;
-        String FileToCopy = "";
         public Boolean Paste = false;
         public Boolean Cut = false;
+
+        ListViewItem SelectedItem;
+        String FileToCopy = "";
 
         MainForm mainForm;
         Drives drives;

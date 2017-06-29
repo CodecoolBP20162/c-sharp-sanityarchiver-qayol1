@@ -93,7 +93,8 @@ namespace SanityArchiver
                 {
                     File.SetAttributes(FullFileName, File.GetAttributes(FullFileName) & ~FileAttributes.System);
                 }
-            } catch
+            }
+            catch
             {
                 MessageBox.Show("Can't change the file's attributes.", "Acces denied", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }

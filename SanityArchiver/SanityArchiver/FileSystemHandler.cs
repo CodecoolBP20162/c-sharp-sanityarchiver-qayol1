@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SanityArchiver
 {
@@ -11,7 +7,7 @@ namespace SanityArchiver
     {
         private MainForm mainForm;
         private FileList fileList;
-        
+
         public FileSystemHandler(MainForm mainForm, FileList fileList)
         {
             this.mainForm = mainForm;
