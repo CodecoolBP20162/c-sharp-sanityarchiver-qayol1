@@ -52,6 +52,7 @@
             this.SearchButton = new System.Windows.Forms.Button();
             this.DriversComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,9 +131,10 @@
             this.readToolStripMenuItem,
             this.cryptToolStripMenuItem,
             this.decryptToolStripMenuItem,
-            this.sizeToolStripMenuItem1});
+            this.sizeToolStripMenuItem1,
+            this.deleteToolStripMenuItem});
             this.ContextMenuStrip.Name = "TxtFileContextMenuStrip";
-            this.ContextMenuStrip.Size = new System.Drawing.Size(153, 224);
+            this.ContextMenuStrip.Size = new System.Drawing.Size(153, 246);
             // 
             // copyToolStripMenuItem
             // 
@@ -233,6 +235,13 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Drivers:";
             // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,6 +286,7 @@
         private System.Windows.Forms.Button SearchButton;
         public System.Windows.Forms.ComboBox DriversComboBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
 

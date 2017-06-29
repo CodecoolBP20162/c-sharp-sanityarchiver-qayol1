@@ -130,16 +130,30 @@ namespace SanityArchiver
         private void cryptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string sourceFile = SelectedItem.SubItems[1].Text;
-            Crypt.EncryptFile(sourceFile, PathBox.Text);
-            File.Delete(sourceFile);
+            try
+            {
+                Crypt.EncryptFile(sourceFile, PathBox.Text);
+                File.Delete(sourceFile);
+            }
+            catch
+            {
+
+            }
             fileList.RefressFileListView();
         }
 
         private void decryptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string sourceFile = SelectedItem.SubItems[1].Text;
-            Crypt.DecryptFile(sourceFile, PathBox.Text);
-            File.Delete(sourceFile);
+            try
+            {
+                Crypt.DecryptFile(sourceFile, PathBox.Text);
+                File.Delete(sourceFile);
+            }
+            catch
+            {
+
+            }
             fileList.RefressFileListView();
         }
 
@@ -155,5 +169,18 @@ namespace SanityArchiver
             }
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string sourceFile = SelectedItem.SubItems[1].Text;
+            try
+            {
+                File.Delete(sourceFile);
+            }
+            catch
+            {
+
+            }
+            fileList.RefressFileListView();
+        }
     }
 }

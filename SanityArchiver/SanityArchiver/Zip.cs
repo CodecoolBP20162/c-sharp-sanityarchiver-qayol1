@@ -35,7 +35,7 @@ namespace SanityArchiver
             FileStream originalFileStream = fileToDecompress.OpenRead();
             {
                 string currentFileName = fileToDecompress.FullName;
-                string newFileName = currentFileName.Remove(currentFileName.Length - fileToDecompress.Extension.Length);
+                string newFileName = currentFileName.Remove(currentFileName.Length - 3);
 
                 using (FileStream decompressedFileStream = File.Create(newFileName))
                 {
