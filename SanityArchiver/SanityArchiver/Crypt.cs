@@ -21,8 +21,12 @@ namespace SanityArchiver
             return ASCIIEncoding.ASCII.GetString(desCrypto.Key);
         }
 
-        public static void EncryptFile(string source, string destination)
+        public static void EncryptFile(string source, string sourcePath)
         {
+            string[] FileParts = source.Split('\\');
+            String FileName = FileParts[FileParts.Length - 1] + ".crypt";
+            string destination = Path.Combine(sourcePath, FileName);
+
             FileStream inputFileStream = new FileStream(source, FileMode.Open, FileAccess.Read);
             FileStream encryptedFileStream = new FileStream(destination, FileMode.Create, FileAccess.Write);
 
@@ -41,8 +45,12 @@ namespace SanityArchiver
             encryptedFileStream.Close();
         }
 
-        public static void DecryptFile(string source, string destination)
+        public static void DecryptFile(string source, string sourcePath)
         {
+            string[] FileParts = source.Split('\\');
+            String FileName = FileParts[FileParts.Length - 1];
+            string destination = Path.Combine(sourcePath, FileName.Remove(FileName.Length - 6));
+
             DESCryptoServiceProvider DES = new DESCryptoServiceProvider();
             DES.Key = ASCIIEncoding.ASCII.GetBytes(sKey);
             DES.IV = ASCIIEncoding.ASCII.GetBytes(sKey);
