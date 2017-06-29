@@ -12,6 +12,8 @@ namespace SanityArchiver
         static String path;
         static ListViewItem SelectedItem;
         static Dictionary<string, string> MimeTypes = Extensions.MimeTypes;
+        static String FileToCopy = "";
+        static Boolean Paste = false;
 
         public MainForm()
         {
@@ -145,12 +147,20 @@ namespace SanityArchiver
             if (e.Button == MouseButtons.Right)
             {
                 SelectedItem = FileListView.FocusedItem;
+                if (Paste)
+                {
+                    ContextMenuStrip.Items[2].Enabled = true;
+                } else
+                {
+                    ContextMenuStrip.Items[2].Enabled = false;
+                }
+                // set txt file right click menu
                 if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("text/plain"))
                 {
                     ContextMenuStrip.Show(Cursor.Position);
                     for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
                     {
-                        if (i == 0 || i == 1 || i == 3 || i == 5 || i == 6 || i == 7)
+                        if (i == 0 || i == 1 || i == 2 || i == 3 || i == 5 || i == 6 || i == 7)
                         {
                             ContextMenuStrip.Items[i].Visible = true;
                         }
@@ -161,12 +171,13 @@ namespace SanityArchiver
                     }
 
                 }
+                // set zipped file right click menu
                 if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("gz"))
                 {
                     ContextMenuStrip.Show(Cursor.Position);
                     for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
                     {
-                        if (i == 0 || i == 1 || i == 4 || i == 6 || i == 7)
+                        if (i == 0 || i == 1 || i == 2 || i == 4 || i == 6 || i == 7)
                         {
                             ContextMenuStrip.Items[i].Visible = true;
                         }
@@ -177,12 +188,13 @@ namespace SanityArchiver
                     }
 
                 }
+                // set directory right click menu
                 if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("File folder"))
                 {
                     ContextMenuStrip.Show(Cursor.Position);
                     for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
                     {
-                        if (i == 8)
+                        if (i == 8 || i == 2)
                         {
                             ContextMenuStrip.Items[i].Visible = true;
                         }  else
@@ -190,18 +202,18 @@ namespace SanityArchiver
                             ContextMenuStrip.Items[i].Visible = false;
                         }
                     }
-                    
                 }
+                // set remained files right click menu
                 if (SelectedItem.Bounds.Contains(e.Location) == true && 
                     !SelectedItem.SubItems[2].Text.Equals("File folder") && 
                     !SelectedItem.SubItems[2].Text.Equals("text/plain") && 
                     !SelectedItem.SubItems[2].Text.Equals("gz") && 
-                    !SelectedItem.SubItems[2].Text.Equals(""))
+                    !SelectedItem.SubItems[1].Equals(""))
                 {
                     ContextMenuStrip.Show(Cursor.Position);
                     for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
                     {
-                        if (i == 0 || i == 1 || i == 3 || i == 6 || i == 7 )
+                        if (i == 0 || i == 1 || i == 2 || i == 3 || i == 6 || i == 7 )
                         {
                             ContextMenuStrip.Items[i].Visible = true;
                         }
@@ -216,12 +228,37 @@ namespace SanityArchiver
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FileToCopy = FileListView.FocusedItem.SubItems[1].Text;
+            Paste = true;
+        }
 
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileToCopy = FileListView.FocusedItem.SubItems[1].Text;
+            Paste = true;
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!FileToCopy.Equals(""))
+            {
+                try
+                {
+                    
+                    string[] FileParts = FileToCopy.Split('\\');
+                    String FileName = FileParts[FileParts.Length-1];
+                    string destFile = Path.Combine(PathBox.Text, FileName);
+                    File.Copy(FileToCopy, destFile, true);
+                } catch
+                {
 
+                } finally
+                {
+                    Paste = false;
+                    FileToCopy = "";
+                }
+            }
+            
         }
 
         private void archiveToolStripMenuItem_Click(object sender, EventArgs e)

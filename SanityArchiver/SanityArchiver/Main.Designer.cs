@@ -137,62 +137,63 @@
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cutToolStripMenuItem.Text = "Cut";
+            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // archiveToolStripMenuItem
             // 
             this.archiveToolStripMenuItem.Name = "archiveToolStripMenuItem";
-            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.archiveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.archiveToolStripMenuItem.Text = "Zip";
             this.archiveToolStripMenuItem.Click += new System.EventHandler(this.archiveToolStripMenuItem_Click);
             // 
             // decompressToolStripMenuItem
             // 
             this.decompressToolStripMenuItem.Name = "decompressToolStripMenuItem";
-            this.decompressToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.decompressToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.decompressToolStripMenuItem.Text = "Decompress";
             this.decompressToolStripMenuItem.Click += new System.EventHandler(this.decompressToolStripMenuItem_Click);
             // 
             // readToolStripMenuItem
             // 
             this.readToolStripMenuItem.Name = "readToolStripMenuItem";
-            this.readToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.readToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.readToolStripMenuItem.Text = "Read";
             this.readToolStripMenuItem.Click += new System.EventHandler(this.readToolStripMenuItem_Click);
             // 
             // cryptToolStripMenuItem
             // 
             this.cryptToolStripMenuItem.Name = "cryptToolStripMenuItem";
-            this.cryptToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.cryptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cryptToolStripMenuItem.Text = "Crypt";
             this.cryptToolStripMenuItem.Click += new System.EventHandler(this.cryptToolStripMenuItem_Click);
             // 
             // decryptToolStripMenuItem
             // 
             this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
-            this.decryptToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.decryptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.decryptToolStripMenuItem.Text = "Decrypt";
             this.decryptToolStripMenuItem.Click += new System.EventHandler(this.decryptToolStripMenuItem_Click);
             // 
             // sizeToolStripMenuItem1
             // 
             this.sizeToolStripMenuItem1.Name = "sizeToolStripMenuItem1";
-            this.sizeToolStripMenuItem1.Size = new System.Drawing.Size(139, 22);
+            this.sizeToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.sizeToolStripMenuItem1.Text = "Size";
             this.sizeToolStripMenuItem1.Click += new System.EventHandler(this.sizeToolStripMenuItem1_Click);
             // 
