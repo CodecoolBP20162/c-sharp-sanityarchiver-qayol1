@@ -46,8 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteConverter.cs" />
-    <Compile Include="DirSize.cs" />
+    <Compile Include="ContextMenuHandler.cs" />
+    <Compile Include="Dir.cs" />
+    <Compile Include="Drives.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="FileSystemHandler.cs" />
+    <Compile Include="FileList.cs" />
     <Compile Include="FileMenu.cs">
       <SubType>Form</SubType>
     </Compile>

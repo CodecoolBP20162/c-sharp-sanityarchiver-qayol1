@@ -33,9 +33,7 @@ namespace SanityArchiver
                 DirSearch("c:/");
                 action = 0;
             }
-            
-
-        }
+       }
 
         void DirSearch(string sDir)
         {

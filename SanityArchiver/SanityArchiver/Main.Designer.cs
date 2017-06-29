@@ -255,14 +255,14 @@
         }
 
         #endregion
-        private System.Windows.Forms.ListView FileListView;
+        public System.Windows.Forms.ListView FileListView;
         private System.Windows.Forms.ColumnHeader Column0;
         private System.Windows.Forms.ColumnHeader Column1;
         private System.Windows.Forms.ColumnHeader Column2;
-        private System.Windows.Forms.TextBox PathBox;
+        public System.Windows.Forms.TextBox PathBox;
         private System.Windows.Forms.ColumnHeader Column3;
         private System.Windows.Forms.Button BackButton;
-        private System.Windows.Forms.ContextMenuStrip ContextMenuStrip;
+        public System.Windows.Forms.ContextMenuStrip ContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem archiveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem readToolStripMenuItem;
@@ -275,7 +275,7 @@
         private System.Windows.Forms.ToolStripMenuItem decryptToolStripMenuItem;
         private System.Windows.Forms.TextBox searchBox;
         private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.ComboBox DriversComboBox;
+        public System.Windows.Forms.ComboBox DriversComboBox;
         private System.Windows.Forms.Label label1;
     }
 }
