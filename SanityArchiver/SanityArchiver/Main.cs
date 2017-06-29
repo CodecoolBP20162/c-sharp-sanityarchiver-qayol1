@@ -14,6 +14,7 @@ namespace SanityArchiver
         static Dictionary<string, string> MimeTypes = Extensions.MimeTypes;
         static String FileToCopy = "";
         static Boolean Paste = false;
+        static Boolean Cut = false;
 
         public MainForm()
         {
@@ -236,6 +237,7 @@ namespace SanityArchiver
         {
             FileToCopy = FileListView.FocusedItem.SubItems[1].Text;
             Paste = true;
+            Cut = true;
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -248,7 +250,14 @@ namespace SanityArchiver
                     string[] FileParts = FileToCopy.Split('\\');
                     String FileName = FileParts[FileParts.Length-1];
                     string destFile = Path.Combine(PathBox.Text, FileName);
-                    File.Copy(FileToCopy, destFile, true);
+                    if (Cut)
+                    {
+                        Cut = false;
+                        File.Move(FileToCopy, destFile);
+                    } else
+                    {
+                        File.Copy(FileToCopy, destFile, true);
+                    }     
                 } catch
                 {
 
@@ -256,6 +265,7 @@ namespace SanityArchiver
                 {
                     Paste = false;
                     FileToCopy = "";
+                    RefressFileListView();
                 }
             }
             
