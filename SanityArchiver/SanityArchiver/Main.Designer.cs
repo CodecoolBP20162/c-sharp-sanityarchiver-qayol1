@@ -37,6 +37,7 @@
             this.Column3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PathBox = new System.Windows.Forms.TextBox();
             this.BackButton = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,6 @@
             this.cryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.searchBox = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
             this.DriversComboBox = new System.Windows.Forms.ComboBox();
@@ -109,6 +109,16 @@
             this.BackButton.UseVisualStyleBackColor = true;
             this.BackButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "folder.jpg");
+            this.imageList1.Images.SetKeyName(1, "find.png");
+            this.imageList1.Images.SetKeyName(2, "file2.jpg");
+            this.imageList1.Images.SetKeyName(3, "txt.png");
+            this.imageList1.Images.SetKeyName(4, "340.png");
+            // 
             // ContextMenuStrip
             // 
             this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -122,7 +132,7 @@
             this.decryptToolStripMenuItem,
             this.sizeToolStripMenuItem1});
             this.ContextMenuStrip.Name = "TxtFileContextMenuStrip";
-            this.ContextMenuStrip.Size = new System.Drawing.Size(140, 202);
+            this.ContextMenuStrip.Size = new System.Drawing.Size(153, 224);
             // 
             // copyToolStripMenuItem
             // 
@@ -186,16 +196,6 @@
             this.sizeToolStripMenuItem1.Text = "Size";
             this.sizeToolStripMenuItem1.Click += new System.EventHandler(this.sizeToolStripMenuItem1_Click);
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "folder.jpg");
-            this.imageList1.Images.SetKeyName(1, "find.png");
-            this.imageList1.Images.SetKeyName(2, "file2.jpg");
-            this.imageList1.Images.SetKeyName(3, "txt.png");
-            this.imageList1.Images.SetKeyName(4, "340.png");
-            // 
             // searchBox
             // 
             this.searchBox.Location = new System.Drawing.Point(315, 18);
@@ -217,7 +217,7 @@
             // DriversComboBox
             // 
             this.DriversComboBox.FormattingEnabled = true;
-            this.DriversComboBox.Location = new System.Drawing.Point(54, 16);
+            this.DriversComboBox.Location = new System.Drawing.Point(62, 16);
             this.DriversComboBox.Name = "DriversComboBox";
             this.DriversComboBox.Size = new System.Drawing.Size(51, 21);
             this.DriversComboBox.TabIndex = 7;

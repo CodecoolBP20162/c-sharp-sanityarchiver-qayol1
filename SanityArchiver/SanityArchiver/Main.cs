@@ -75,6 +75,10 @@ namespace SanityArchiver
                 }
                 item.SubItems.Add(ByteConverter.ConvertBytes(file.Length));
             }
+            if (FileListView.Items.Count < 1)
+            {
+                addEmptyItem();
+            }
             PathBox.Text = FileSystemData.currentDirectory.FullName;
             FileListView.Columns[1].Width = 0;
             for (int i=0; i<FileListView.Columns.Count; i++)
@@ -85,6 +89,13 @@ namespace SanityArchiver
                     FileListView.Columns[i].AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
                 }
             }
+        }
+
+        private void addEmptyItem()
+        {
+            ListViewItem emptyItem = FileListView.Items.Add("");
+            emptyItem.SubItems.Add("");
+            emptyItem.SubItems.Add("");
         }
        
         private void GoToNewDir()
@@ -181,7 +192,11 @@ namespace SanityArchiver
                     }
                     
                 }
-                if (SelectedItem.Bounds.Contains(e.Location) == true && !SelectedItem.SubItems[2].Text.Equals("File folder") && !SelectedItem.SubItems[2].Text.Equals("text/plain") && !SelectedItem.SubItems[2].Text.Equals("gz"))
+                if (SelectedItem.Bounds.Contains(e.Location) == true && 
+                    !SelectedItem.SubItems[2].Text.Equals("File folder") && 
+                    !SelectedItem.SubItems[2].Text.Equals("text/plain") && 
+                    !SelectedItem.SubItems[2].Text.Equals("gz") && 
+                    !SelectedItem.SubItems[2].Text.Equals(""))
                 {
                     ContextMenuStrip.Show(Cursor.Position);
                     for (int i = 0; i < ContextMenuStrip.Items.Count; i++)
@@ -266,6 +281,5 @@ namespace SanityArchiver
             }
         }
 
-        
     }
 }
