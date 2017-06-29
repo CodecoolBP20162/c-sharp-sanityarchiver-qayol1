@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ByteConverter.cs" />
     <Compile Include="ContextMenuHandler.cs" />
+    <Compile Include="Crypt.cs" />
     <Compile Include="Dir.cs" />
     <Compile Include="Drives.cs" />
     <Compile Include="Extensions.cs" />

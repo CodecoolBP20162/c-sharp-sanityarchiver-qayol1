@@ -25,13 +25,13 @@ namespace SanityArchiver
             // set txt file right click menu
             if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("text/plain"))
             {
-                int[] flags = { 0, 1, 2, 3, 5, 6, 7 };
+                int[] flags = { 0, 1, 2, 3, 5, 6 };
                 SetVisibility(flags);
             }
             // set zipped file right click menu
             if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("gz"))
             {
-                int[] flags = { 0, 1, 2, 4, 6, 7 };
+                int[] flags = { 0, 1, 2, 4, 6 };
                 SetVisibility(flags);
             }
             // set directory right click menu
@@ -40,14 +40,21 @@ namespace SanityArchiver
                 int[] flags = { 2, 8 };
                 SetVisibility(flags);
             }
+            // set crypt file right click menu
+            if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("crypt"))
+            {
+                int[] flags = { 0, 1, 2, 3, 7 };
+                SetVisibility(flags);
+            }
             // set remained files right click menu
             if (SelectedItem.Bounds.Contains(e.Location) == true &&
                 !SelectedItem.SubItems[2].Text.Equals("File folder") &&
                 !SelectedItem.SubItems[2].Text.Equals("text/plain") &&
                 !SelectedItem.SubItems[2].Text.Equals("gz") &&
+                !SelectedItem.SubItems[2].Text.Equals("crypt") &&
                 !SelectedItem.SubItems[1].Equals(""))
             {
-                int[] flags = { 0, 1, 2, 3, 6, 7 };
+                int[] flags = { 0, 1, 2, 3, 6 };
                 SetVisibility(flags);
             }
         }
