@@ -29,30 +29,29 @@ namespace SanityArchiver
                 SetVisibility(flags);
             }
             // set zipped file right click menu
-            if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("gz"))
+            else if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("gz"))
             {
                 int[] flags = { 0, 1, 2, 4, 6, 9 };
                 SetVisibility(flags);
             }
             // set directory right click menu
-            if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("File folder"))
+            else if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("File folder"))
             {
                 int[] flags = { 2, 8 };
                 SetVisibility(flags);
             }
             // set crypt file right click menu
-            if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("crypt"))
+            else if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[2].Text.Equals("crypt"))
             {
                 int[] flags = { 0, 1, 2, 3, 5, 7, 9 };
                 SetVisibility(flags);
             }
+            else if (SelectedItem.Bounds.Contains(e.Location) == true && SelectedItem.SubItems[1].Equals(""))
+            {
+                //empty line has no menu
+            }
             // set remained files right click menu
-            if (SelectedItem.Bounds.Contains(e.Location) == true &&
-                !SelectedItem.SubItems[2].Text.Equals("File folder") &&
-                !SelectedItem.SubItems[2].Text.Equals("text/plain") &&
-                !SelectedItem.SubItems[2].Text.Equals("gz") &&
-                !SelectedItem.SubItems[2].Text.Equals("crypt") &&
-                !SelectedItem.SubItems[1].Equals(""))
+            else
             {
                 int[] flags = { 0, 1, 2, 3, 6, 9 };
                 SetVisibility(flags);
